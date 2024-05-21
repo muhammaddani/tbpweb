@@ -15,7 +15,7 @@ router.get('/dashboard', verifyToken, function(req, res, next) {
   const userRole = req.userRole;
 
   // Sekarang Anda dapat menggunakan data ini sesuai kebutuhan
-  res.render('admin/dashboard', { userId,userEmail,userName, userNim,userRole });
+  res.render('admin/dashboard', { userId,userEmail,userName,userNim,userRole });
 });
 
 //
