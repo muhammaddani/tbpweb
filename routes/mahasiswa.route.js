@@ -15,7 +15,7 @@ router.get('/home', verifyToken, function(req, res) {// akses data
   const userRole = req.userRole;
 
   // Sekarang Anda dapat menggunakan data ini sesuai kebutuhan
-  res.render('home', { userId,userEmail,userName, userNim,userRole });//akses front end
+  res.render('home', { userId,userEmail,userName,userNim,userRole });//akses front end
 });
 
 
@@ -27,7 +27,7 @@ router.get('/mahasiswa/profil', verifyToken, function(req, res, next) {
   const userNim = req.userNim;
   const userRole = req.userRole;
   // Sekarang Anda dapat menggunakan data ini sesuai kebutuhan
-  res.render('lihatprofil', { userId,userEmail,userName, userNim,userRole  });
+  res.render('lihatprofil', { userId,userEmail,userName,userNim,userRole});
 });
 
 
@@ -38,7 +38,7 @@ router.get('/mahasiswa/ubah-pw',verifyToken, function(req, res, next) {
   const userNim = req.userNim;
   const userRole = req.userRole;
   // Sekarang Anda dapat menggunakan data ini sesuai kebutuhan
-  res.render('ubah-pw', { userId,userEmail,userName, userNim,userRole  });
+  res.render('ubah-pw', { userId,userEmail,userName,userNim,userRole  });
 });
 
 router.post('/change-password', verifyToken, async (req, res) => {
