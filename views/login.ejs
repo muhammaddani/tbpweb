@@ -21,6 +21,12 @@
       </div>
 
       <div class="mt-5">
+        <!-- Notification -->
+        <div id="notification" class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert" style="display: none;">
+          <span class="font-medium">Success!</span> Password successfully changed.
+        </div>
+        <!-- End Notification -->
+
         <!-- Form -->
         <form method="POST" action="/login" class="space-y-4">
           <!-- Form Group -->
@@ -37,7 +43,7 @@
           <div>
             <div class="flex justify-between items-center">
               <label for="password" class="block text-sm font-medium text-gray-700 dark:text-white">Password</label>
-              <a class="text-sm text-blue-600 hover:underline font-medium dark:text-blue-500" href="../examples/html/recover-account.html">Forgot password?</a>
+              <a class="text-sm text-blue-600 hover:underline font-medium dark:text-blue-500" href="/ubah-pw">Change password?</a>
             </div>
             <div class="mt-1">
               <input type="password" id="password" name="password" class="block w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300" required aria-describedby="password-error">
@@ -59,9 +65,23 @@
         <!-- End Form -->
       </div>
     </main>
+    <script>
+      // Function to display notification
+      function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.innerText = message;
+        notification.style.display = 'block';
+      }
+
+      // Check for message in URL parameters and show notification if present
+      document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        if (message) {
+          showNotification(message);
+        }
+      });
+    </script>
     <script src="/preline/preline.js"></script>
-
-
-
   </body>
 </html>
