@@ -12,7 +12,15 @@ router.get('/', function(req, res) {
 router.get('/login', controller.form);
 router.post('/login', controller.checklogin);
 
-
+router.get('/ubah-pw',verifyToken, function(req, res, next) {
+  const userId = req.userId;
+  const userEmail = req.userEmail;
+  const userName = req.userName;
+  const userNim = req.userNim;
+  const userRole = req.userRole;
+  // Sekarang Anda dapat menggunakan data ini sesuai kebutuhan
+  res.render('ubah-pw', { userId,userEmail,userName,userNim,userRole  });
+});
 
 router.post('/logout', verifyToken,controller.logout);
 module.exports = router;
