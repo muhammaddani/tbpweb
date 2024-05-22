@@ -69,13 +69,13 @@ const changePassword = async (req, res) => {
     // Cari pengguna berdasarkan email
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(404).json({ message: 'Pengguna tidak ditemukan' });
+      return res.redirect('/ubah-pw?error=Pengguna%20tidak%20ditemukan');
     }
 
     // Periksa apakah password saat ini cocok
     const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Password saat ini salah' });
+      return res.redirect('/ubah-pw?error=Password%20saat%20ini%20salah');
     }
 
     // Enkripsi password baru
@@ -83,8 +83,8 @@ const changePassword = async (req, res) => {
 
     // Perbarui password pengguna di database
     await user.update({ password: hashedNewPassword });
-
-    return res.status(200).json({ message: 'Password berhasil diubah' });
+    // Redirect ke halaman login dengan pesan sukses
+    res.redirect('/login?message=Password%20successfully%20changed');
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Terjadi kesalahan server' });
