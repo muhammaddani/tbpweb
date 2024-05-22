@@ -30,17 +30,6 @@ router.get('/mahasiswa/profil', verifyToken, function(req, res, next) {
   res.render('lihatprofil', { userId,userEmail,userName,userNim,userRole});
 });
 
-
-router.get('/mahasiswa/ubah-pw',verifyToken, function(req, res, next) {
-  const userId = req.userId;
-  const userEmail = req.userEmail;
-  const userName = req.userName;
-  const userNim = req.userNim;
-  const userRole = req.userRole;
-  // Sekarang Anda dapat menggunakan data ini sesuai kebutuhan
-  res.render('ubah-pw', { userId,userEmail,userName,userNim,userRole  });
-});
-
 router.post('/change-password', verifyToken, async (req, res) => {
   try {
     await changePassword(req, res);
