@@ -27,9 +27,9 @@ const checklogin = async (req, res) => {
 
     // Buat token JWT
     const token = jwt.sign(
-      { id: foundUser.id, email: foundUser.email, name: foundUser.name, departemen: foundUser.departemen,role: foundUser.role },
+      { id: foundUser.id, email: foundUser.email, name: foundUser.name, nim: foundUser.nim,role: foundUser.role },
       process.env.JWT_SECRET_TOKEN,
-      { expiresIn: 86400 }
+      { expiresIn: 1800 }
     );
 
     // Set cookie dengan token
