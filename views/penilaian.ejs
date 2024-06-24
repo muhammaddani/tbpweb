@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penilaian </title>
+    <link rel="stylesheet" href="stylesheets/penilaian.css">
+    
+    
+  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <body>
+    <header>
+      <div class="container">
+          <div class="logo">
+            <img src="/views/images/logo unand.png" alt="Logo Sistem Informasi KKN">
+          </div>
+          <div class="nav">
+              <ul>
+                <li><a href="#">SISTEM INFORMASI KKN</a></li>
+                  <li><a href="#">Kelompok Saya</a></li>
+                  <li><a href="/views/galeri.ejs"><i class=""></i>&nbsp;Galeri</a></li>
+                  <li><a href="#">Lokasi KKN</a></li>
+                  <li><a href="/views/faq.ejs"><i class=""></i>&nbsp;FAQ</a></li>
+              </ul>
+          </div>
+          <div class="icons">
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <title>Notification</title>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+            </head>
+            <body>
+              <i class="fas fa-bell" onclick="location.href='/views/notifikasi.ejs'"></i>
+            
+              
+            </body>
+            </html>
+              
+              <i class="fas fa-user"></i>
+          </div>
+      </div>
+  </header>
+
+  <main>
+    <section></section>
+    <h1>PENILAIAN KKN</h1>
+      <div class="container">
+          <aside>
+              <ul>
+                <li><a href="#"><i class="fas fa-home"></i>&nbsp;Beranda</a></li>
+                <li><a href="#"><i class="fas fa-list-ul"></i>&nbsp;Pendaftaran KKN</a></li>
+                <li><a href="#"><i class="fas fa-users"></i>&nbsp;Pembagian Kelompok</a></li>
+                <li><a href="#"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Bimbingan Teknis</a></li>
+                <li><a href="#"><i class="fas fa-clipboard-check"></i>&nbsp;Monitoring & Evaluasi</a></li>
+                <li><a href="#"><i class="fas fa-book"></i>&nbsp;Jurnal Kegiatan</a></li>
+                <li><a href="/views/laporan.ejs"><i class="fas fa-file-alt"></i>&nbsp;Pelaporan</a></li>
+                <li><a href="/views/penilaian.ejs"><i class="fas fa-user-tie"></i>&nbsp;Penilaian</a></li>
+                <li><a href="#"><i class="fas fa-box"></i>&nbsp; Arsip</a></li>
+                <li><a href="#"><i class="fas fa-comment"></i>&nbsp; Forum Diskusi</a></li>
+                  <ul>
+                   
+          </aside>
+    
+          <div class="form-container">
+            
+        <form id="form-penilaian">
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="nim">NIM:</label>
+                <input type="text" id="nim" name="nim" required>
+            </div>
+            <div class="form-group">
+                <label for="jurusan">Jurusan:</label>
+                <input type="text" id="jurusan" name="jurusan" required>
+            </div>
+            <table margin-leaft>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Uraian</th>
+                        <th>Bobot</th>
+                        <th>Huruf</th>
+                      
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="uraian_3" placeholder="" required></td>
+                        <td><input type="number" name="bobot_3" min="0" max="100" required></td>
+                        <td><input type="text" name="huruf_1" id="nilai-1" maxlength="1" required></td>
+                    </tr>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" name="uraian_3" placeholder="" required></td>
+                        <td><input type="number" name="bobot_3" min="0" max="100" required></td>
+                        <td><input type="text" name="huruf_1" id="nilai-1" maxlength="1" required></td>
+        </tr>
+                        
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" name="uraian_3" placeholder="" required></td>
+                        <td><input type="number" name="bobot_3" min="0" max="100" required></td>
+                        <td><input type="text" name="huruf_1" id="nilai-1" maxlength="1" required></td>
+        </tr>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" name="uraian_4" placeholder="" required></td>
+                        <td><input type="number" name="bobot_4" min="0" max="100" required></td>
+                        <td><input type="text" name="huruf_1" id="nilai-1" maxlength="1" required></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="text" name="uraian_4" placeholder="" required></td>
+                        <td><input type="number" name="bobot_4" min="0" max="100" required></td>
+                        <td><input type="text" name="huruf_1" id="nilai-1" maxlength="1" required></td>
+                       
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <button type="submit" id="simpanButton">Simpan Penilaian</button>
+<div id="result"></div>
+
+<script>
+  const simpanButton = document.getElementById('simpanButton');
+  const resultDiv = document.getElementById('result');
+
+  simpanButton.addEventListener('click', (e) => {
+    e.preventDefault();
+   
+    resultDiv.innerHTML = 'Berhasil disimpan!';
+    resultDiv.style.color = 'green';
+    
+    document.querySelectorAll('input').forEach((element) => {
+      element.value = '';
+    });
+  });
+</script>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+                        
+                    </li>
+                </ul>
+            </div>
+           

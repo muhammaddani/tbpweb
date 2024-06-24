@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri</title>
+    <link rel="stylesheet" href="stylesheets/Galeri.css">
+    
+    
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<body>
+    <header>
+        <div class="container">
+            <div class="logo unand.png">
+                <img src="/views/images/logo unand.png" alt="Logo Sistem Informasi KKN">
+              
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="#">SISTEM INFORMASI KKN</a></li>
+                    <li><a href="#">Kelompok Saya</a></li>
+                    <li><a href="#">Galeri</a></li>
+                    <li><a href="#">Lokasi KKN</a></li>
+                    <li><a href="/views/faq.ejs"><i class=""></i>&nbsp;FAQ</a></li>
+                </ul>
+            </div>
+            <div class="icons">
+                <i class="fas fa-bell" onclick="location.href='/views/notifikasi.ejs'"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <aside>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i>&nbsp;Beranda</a></li>
+<li><a href="#"><i class="fas fa-list-ul"></i>&nbsp;Pendaftaran KKN</a></li>
+<li><a href="#"><i class="fas fa-users"></i>&nbsp;Pembagian Kelompok</a></li>
+<li><a href="#"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Bimbingan Teknis</a></li>
+<li><a href="#"><i class="fas fa-clipboard-check"></i>&nbsp;Monitoring & Evaluasi</a></li>
+<li><a href="#"><i class="fas fa-book"></i>&nbsp;Jurnal Kegiatan</a></li>
+
+<li><a href="/views/laporan.ejs"><i class="fas fa-file-alt"></i>&nbsp;Pelaporan</a></li>
+<li><a href="/views/penilaian.ejs"><i class="fas fa-user-tie"></i>&nbsp;Penilaian</a></li>
+ <li><a href="#"><i class="fas fa-box"></i>&nbsp; Arsip</a></li>
+ <li><a href="#"><i class="fas fa-comment"></i>&nbsp; Forum Diskusi</a></li>
+  </ul>
+                </ul>
+            </aside>
+            <section>
+                <h1>DOKUMENTASI KKN</h1>
+                <div class="upload-file">
+                    <input type="file" id="file-input" accept="image/*">
+                    <label for="file-input">Chosee File</label>
+                    <p id="file-name">No File Chosen</p>
+                    <button class="btn" id="upload-btn">Tambah</button>
+<div id="result"></div>
+
+<script>
+  const uploadBtn = document.getElementById('upload-btn');
+  const resultDiv = document.getElementById('result');
+
+  uploadBtn.addEventListener('click', (e) => {
+   
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+      
+    `;
+    document.querySelector('tbody').appendChild(newRow);
+    resultDiv.innerHTML = 'Berhasil tambah!';
+    resultDiv.style.color = 'green';
+  });
+</script>
+                </div>
+              
+                    <div class="file-item">
+                        <img src="/views/images/WhatsApp Image 2024-06-22 at 21.28.07.jpeg" alt="Gambar 3" id="image-1">
+                        <button class="btn" id="delete-btn-1" onclick="deleteImage(this)">Hapus</button>
+                      </div>
+                      
+                      <script>
+                        function deleteImage(btn) {
+                          var imageId = btn.id.replace('delete-btn-', '');
+                          var image = document.getElementById('image-' + imageId);
+                          image.parentNode.removeChild(image);
+                        }
+                      </script>
+                        <div class="file-list">
+                            <div class="file-item">
+                                <img src="/views/images/WhatsApp Image 2024-06-22 at 21.28.07 (1).jpeg" alt="Gambar 1">
+                                <button class="btn" id="delete-btn">Hapus</button>
+                                
+                                
+                            </div>
+                            <div class="file-item">
+                                <img src="/views/images/WhatsApp Image 2024-06-22 at 21.28.07 (2).jpeg" alt="Gambar 2">
+                                <button class="btn" id="delete-btn">Hapus</button>
+                            </div>
+                          
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+             
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
