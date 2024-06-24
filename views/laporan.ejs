@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan</title>
+  <link rel="stylesheet" href="stylesheets/Laporan.css">
+    
+    
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<body>
+    <header>
+         <div class="container">
+            <div class="logo">
+              <img src="/views/images/logo unand.png" alt="Logo Sistem Informasi KKN">
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="#">Kelompok Saya</a></li>
+                    <li><a href="/views/galeri.ejs"><i class=""></i>&nbsp;Galeri</a></li>
+                    <li><a href="#">Lokasi KKN</a></li>
+                    <li><a href="/views/faq.ejs"><i class=""></i>&nbsp;FAQ</a></li>
+                </ul>
+            </div>
+            <div class="icons">
+              <i class="fas fa-bell" onclick="location.href='/views/notifikasi.ejs'"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <aside>
+                <ul>
+                  <li><a href="#"><i class="fas fa-home"></i>&nbsp;Beranda</a></li>
+                  <li><a href="#"><i class="fas fa-list-ul"></i>&nbsp;Pendaftaran KKN</a></li>
+                  <li><a href="#"><i class="fas fa-users"></i>&nbsp;Pembagian Kelompok</a></li>
+                  <li><a href="#"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Bimbingan Teknis</a></li>
+                  <li><a href="#"><i class="fas fa-clipboard-check"></i>&nbsp;Monitoring & Evaluasi</a></li>
+                  <li><a href="#"><i class="fas fa-book"></i>&nbsp;Jurnal Kegiatan</a></li>
+                  <li><a href="/views/laporan.ejs"><i class="fas fa-file-alt"></i>&nbsp;Pelaporan</a></li>
+                  <li><a href="/views/penilaian.ejs"><i class="fas fa-user-tie"></i>&nbsp;Penilaian</a></li>
+                 <li><a href="#"><i class="fas fa-box"></i>&nbsp; Arsip</a></li>
+                  <li><a href="#"><i class="fas fa-comment"></i>&nbsp; Forum Diskusi</a></li>
+
+                  
+                  <div class="container">
+                    <div class="content">
+                     
+          </body>
+          </html>
+                    <div class="header">
+                  
+                        
+                    </div>
+                    <div class="content">
+                     
+                    </div>
+                </div>
+                <script src="script.js"></script>
+            </body>
+            </html>
+                </ul>
+            </aside>
+
+    <section class="content">
+      <div class="image-container">
+       
+      </div>
+
+      <div class="form-container">
+        <h2>LAPORAN KEGIATAN KKN</h2>
+
+    
+        
+        <div class="form-group">
+          <label for="namaKegiatan">Nama Kegiatan:</label>
+          <input type="text" id="namaKegiatan" placeholder="" value="Kegiatan Sosial Masyarakat">
+        </div>
+        
+        <div class="form-group">
+          <label for="tanggal">Tanggal:</label>
+          <input type="date" id="tanggal" value="2024-06-10">
+        </div>
+        
+        <div class="form-group">
+          <label for="jamMulai">Jam Mulai:</label>
+          <input type="time" id="jamMulai" value="08:00">
+        </div>
+        
+        <div class="form-group">
+          <label for="jamSelesai">Jam Selesai:</label>
+          <input type="time" id="jamSelesai" value="12:00">
+        </div>
+        
+        <div class="form-group">
+          <label for="kelompokKKN">Kelompok KKN:</label>
+          <input type="number" id="kelompokKKN" value="6">
+        </div>
+        
+        <div class="form-group">
+          <label for="tempatKegiatan">Tempat Kegiatan:</label>
+          <input type="text" id="tempatKegiatan" placeholder="" value="Lapangan Universitas">
+        </div>
+        
+        <div class="form-group">
+          <label for="isiKegiatan">Isi Kegiatan:</label>
+          <textarea id="isiKegiatan" placeholder="">Kegiatan sosial masyarakat ini bertujuan untuk membantu masyarakat sekitar dalam membersihkan lingkungan dan meningkatkan kesadaran akan pentingnya menjaga kebersihan lingkungan.</textarea>
+        </div>
+        
+        <script>
+          // Fill in the form data using JavaScript
+          document.getElementById("namaKegiatan").value = "Kegiatan Sosial Masyarakat";
+          document.getElementById("tanggal").value = "2023-03-15";
+          document.getElementById("jamMulai").value = "08:00";
+          document.getElementById("jamSelesai").value = "12:00";
+          document.getElementById("kelompokKKN").value = "5";
+          document.getElementById("tempatKegiatan").value = "Lapangan Universitas";
+          document.getElementById("isiKegiatan").value = "Kegiatan sosial masyarakat ini bertujuan untuk membantu masyarakat sekitar dalam membersihkan lingkungan dan meningkatkan kesadaran akan pentingnya menjaga kebersihan lingkungan.";
+        </script>
+        
+          <button id="kirimButton">KIRIM</button>
+          <div id="result"></div>
+        
+          <script>
+            const kirimButton = document.getElementById('kirimButton');
+            const resultDiv = document.getElementById('result');
+            const formElements = document.querySelectorAll('.form-group input,.form-group textarea');
+        
+            kirimButton.addEventListener('click', () => {
+            
+              const formData = {};
+              formElements.forEach((element) => {
+                formData[element.id] = element.value;
+              });
+        
+             
+              resultDiv.innerHTML = 'Berhasil dikirim!';
+              resultDiv.style.color = 'green';
+        
+              formElements.forEach((element) => {
+                element.value = '';
+              });
+            });
+          </script>
+        </div>
