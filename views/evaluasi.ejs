@@ -23,6 +23,35 @@
     .download-link:hover {
       color: #6366f1;
     }
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+    }
+    .flex-container {
+      display: flex;
+    }
+    .left-column {
+      flex: 1;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+    .right-column {
+      flex: 2;
+      padding: 10px;
+      background-color: #ffffff;
+      border-left: 1px solid #ccc;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li a {
+      text-decoration: none;
+    }
+    li a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -60,13 +89,13 @@
     </div>
   </nav>
 
-<!-- Sidebar and Main Content -->
+  <!-- Sidebar and Main Content -->
   <div class="flex mt-20">
     <!-- Sidebar -->
     <div class="w-72 bg-green-800 text-white px-7 py-3 flex flex-col fixed top-0 bottom-0">
       <ul class="flex flex-col space-y-2 mt-16">
         <li>
-          <a href="/home" class="flex items-center bg-lime-700 rounded py-3">
+          <a href="/home" class="flex items-center hover:text-gray-400 py-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7 2 2L3 12z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12l-2-2m0 0l-7-7-7 7-2 2l7 7z" />
@@ -99,7 +128,7 @@
           </a>
         </li>
         <li class="relative group">
-          <a href="#" class="flex items-center  py-3 font-bold ">
+          <a href="#" class="flex items-center  py-3 font-bold bg-lime-700 rounded">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
             </svg>
@@ -145,48 +174,117 @@
       </ul>
     </div>
 
-    <!-- Main Content -->
-    <div>
+    <div class="flex-grow bg-gray-100 p-5 ml-72">
+        <section class="flex flex-col ml-5 w-[95%] max-md:ml-0 max-md:w-full">
+          <div class="flex flex-col self-stretch px-5 pt-8 pb-3.5 my-auto w-full bg-green-800 max-md:pl-5 max-md:mt-10 max-md:max-w-full">
+            <h2 class="text-4xl text-white max-md:max-w-full">Proker:</h2>
+            <div class="flex-container m-3">
+              <div class="left-column">
+                <ul class="space-y-4"> <% prokers.forEach(proker => { %>
+                    <li><a href="#" onclick="showEvaluation('<%= proker.id %>')"><%= proker.nama_proker %></a></li>
+                  <% }) %>
+                </ul>
+              </div>
+              <div class="right-column" id="evaluation-content">
+                <p>Select a Proker to see its evaluation content.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+      </div>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Edit Evaluasi</h3>
+              <div class="mt-2">
+                <textarea id="editContent" rows="4" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" placeholder="Edit your evaluation content here"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm" onclick="saveEdit()">Save</button>
+          <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeEditModal()">Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('user-menu');
-      if (menu.style.display === 'none' || menu.style.display === '') {
-        menu.style.display = 'block';
-        setTimeout(() => {
-          menu.classList.remove('opacity-0', 'scale-95');
-          menu.classList.add('opacity-100', 'scale-100');
-        }, 10);
-      } else {
-        menu.classList.remove('opacity-100', 'scale-100');
-        menu.classList.add('opacity-0', 'scale-95');
-        setTimeout(() => {
-          menu.style.display = 'none';
-        }, 75);
-      }
-    }
-
     function openMenu() {
-      const menu = document.getElementById('user-menu');
-      menu.style.display = 'block';
-      setTimeout(() => {
-        menu.classList.remove('opacity-0', 'scale-95');
-        menu.classList.add('opacity-100', 'scale-100');
-      }, 10);
+      document.getElementById("user-menu").classList.remove("opacity-0", "scale-95");
+      document.getElementById("user-menu").classList.add("opacity-100", "scale-100");
     }
 
     function closeMenu() {
-      const menu = document.getElementById('user-menu');
-      menu.classList.remove('opacity-100', 'scale-100');
-      menu.classList.add('opacity-0', 'scale-95');
-      setTimeout(() => {
-        menu.style.display = 'none';
-      }, 75);
+      document.getElementById("user-menu").classList.remove("opacity-100", "scale-100");
+      document.getElementById("user-menu").classList.add("opacity-0", "scale-95");
     }
-  </script>
 
+    const prokers = <%- JSON.stringify(prokers) %>;
+
+  let currentProkerId = null;
+
+  function showEvaluation(id) {
+    const proker = prokers.find(p => p.id == id);
+    if (proker) {
+      document.getElementById('evaluation-content').innerHTML = `
+        <p>${proker.isi_evaluasi}</p>
+        <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onclick="openEditModal('${proker.id}')">Edit</button>
+      `;
+    }
+  }
+
+  function openEditModal(id) {
+    currentProkerId = id;
+    const proker = prokers.find(p => p.id == id);
+    if (proker) {
+      document.getElementById('editContent').value = proker.isi_evaluasi;
+      document.getElementById('editModal').classList.remove('hidden');
+    }
+  }
+
+  function closeEditModal() {
+    document.getElementById('editModal').classList.add('hidden');
+  }
+
+  function saveEdit() {
+  const newContent = document.getElementById('editContent').value;
+  const proker = prokers.find(p => p.id == currentProkerId);
+  if (proker) {
+    proker.isi_evaluasi = newContent;
+    document.getElementById('editModal').classList.add('hidden');
+    showEvaluation(currentProkerId);
+
+    // Update the data on the server
+    fetch(`/api/prokers/${currentProkerId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ isi_evaluasi: newContent })
+    })
+    .then(response => response.json())
+    .then(updatedProker => {
+      // Handle successful update
+      console.log('Proker updated successfully', updatedProker);
+    })
+    .catch(error => {
+      // Handle error
+      console.error('Error updating proker:', error);
+    });
+  }
+}
+  </script>
 </body>
 </html>

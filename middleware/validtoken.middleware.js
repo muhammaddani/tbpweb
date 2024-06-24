@@ -17,6 +17,9 @@ function verifyToken(req, res, next) {
       req.userEmail = decoded.email;
       req.userName = decoded.name;
       req.userNim = decoded.nim;
+      req.userNip = decoded.nip;
+      req.userFakultas = decoded.fakultas;
+      req.userDepartemen = decoded.departemen;
       req.userRole = decoded.role; 
       
       next();

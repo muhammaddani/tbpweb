@@ -27,9 +27,9 @@ const checklogin = async (req, res) => {
 
     // Buat token JWT
     const token = jwt.sign(
-      { id: foundUser.id, email: foundUser.email, name: foundUser.name, nim: foundUser.nim,role: foundUser.role },
+      { id: foundUser.id, email: foundUser.email, name: foundUser.name, nim: foundUser.nim, nip: foundUser.nip, fakultas: foundUser.fakultas, departemen: foundUser.departemen, role: foundUser.role },
       process.env.JWT_SECRET_TOKEN,
-      { expiresIn: 1800 }
+      { expiresIn: 36000 }
     );
 
     // Set cookie dengan token
@@ -40,7 +40,9 @@ const checklogin = async (req, res) => {
       return res.redirect("/home");
     } else if (foundUser.role === "admin") {
       return res.redirect("/admin/dashboard");
-    }
+    } else if (foundUser.role === "dosbim") {
+      return res.redirect("/dosbim/dashboard");
+    } 
     console.log(foundUser.role)
     // Jika tidak ada peran yang cocok, berikan respons standar
     res.status(200).send({ auth: true, token: token });

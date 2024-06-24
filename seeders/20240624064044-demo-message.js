@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
@@ -13,24 +12,27 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Users', [{
-      email: 'kel6@gmail.com',
-      password: await bcrypt.hash('kel6',10),
-      name: 'Kelompok Enam',
-      nim: '2211520000',
-      role:'mahasiswa',
+    await queryInterface.bulkInsert('Messages', [{
+      id_user: 1,
+      pesan: '',
+      id_proker: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
-      email: 'admin@gmail.com',
-      password: await bcrypt.hash('admin',10),
-      name: 'admin',
-      nim: '',
-      role:'admin',
+      id_user: 1,
+      pesan: '',
+      id_proker: 2,
       createdAt: new Date(),
       updatedAt: new Date(),
-     }
+    },
+    {
+      id_user: 1,
+      pesan: '',
+      id_proker: 3,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
     ],{});
   },
 

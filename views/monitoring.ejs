@@ -27,7 +27,7 @@
 </head>
 <body class="bg-gray-100">
 
-  <!-- Navigation -->
+   <!-- Navigation -->
   <nav class="bg-lime-950 text-white px-4 py-4 flex items-center fixed top-0 left-0 right-0 z-50">
     <div class="flex items-center">
       <img src="/img/unand.png" alt="Logo" class="h-10 w-10 mr-3">
@@ -66,7 +66,7 @@
     <div class="w-72 bg-green-800 text-white px-7 py-3 flex flex-col fixed top-0 bottom-0">
       <ul class="flex flex-col space-y-2 mt-16">
         <li>
-          <a href="/home" class="flex items-center bg-lime-700 rounded py-3">
+          <a href="/home" class="flex items-center hover:text-gray-400 py-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7 2 2L3 12z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12l-2-2m0 0l-7-7-7 7-2 2l7 7z" />
@@ -99,7 +99,7 @@
           </a>
         </li>
         <li class="relative group">
-          <a href="#" class="flex items-center  py-3 font-bold ">
+          <a href="#" class="flex items-center  py-3 font-bold bg-lime-700 rounded">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
             </svg>
@@ -146,47 +146,35 @@
     </div>
 
     <!-- Main Content -->
-    <div>
-      
+    <div class="flex-grow bg-gray-100 p-5 ml-72">
+      <div class="space-y-5 ml-8 mr-24 mt-5">
+        <% if (prokers && prokers.length > 0) { %>
+          <% prokers.forEach(proker => { %>
+            <div class="mb-2 flex justify-between items-center">
+              <h3 class="text-xl font-semibold text-gray-800 dark:text-white"><%= proker.nama_proker %></h3>
+              <span class="text-lg text-gray-800 dark:text-white"><%= proker.progress %>%</span>
+            </div>
+            <div class="flex w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+              <div class="flex flex-col justify-center rounded-full overflow-hidden bg-blue-600 text-xs text-white text-center whitespace-nowrap transition duration-500 dark:bg-blue-500" style="width: <%= proker.progress %>%"></div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>No data available</p>
+        <% } %>
+      </div>
     </div>
   </div>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('user-menu');
-      if (menu.style.display === 'none' || menu.style.display === '') {
-        menu.style.display = 'block';
-        setTimeout(() => {
-          menu.classList.remove('opacity-0', 'scale-95');
-          menu.classList.add('opacity-100', 'scale-100');
-        }, 10);
-      } else {
-        menu.classList.remove('opacity-100', 'scale-100');
-        menu.classList.add('opacity-0', 'scale-95');
-        setTimeout(() => {
-          menu.style.display = 'none';
-        }, 75);
-      }
-    }
-
     function openMenu() {
-      const menu = document.getElementById('user-menu');
-      menu.style.display = 'block';
-      setTimeout(() => {
-        menu.classList.remove('opacity-0', 'scale-95');
-        menu.classList.add('opacity-100', 'scale-100');
-      }, 10);
+      document.getElementById("user-menu").classList.remove("opacity-0", "scale-95");
+      document.getElementById("user-menu").classList.add("opacity-100", "scale-100");
     }
 
     function closeMenu() {
-      const menu = document.getElementById('user-menu');
-      menu.classList.remove('opacity-100', 'scale-100');
-      menu.classList.add('opacity-0', 'scale-95');
-      setTimeout(() => {
-        menu.style.display = 'none';
-      }, 75);
+      document.getElementById("user-menu").classList.remove("opacity-100", "scale-100");
+      document.getElementById("user-menu").classList.add("opacity-0", "scale-95");
     }
   </script>
-
 </body>
 </html>

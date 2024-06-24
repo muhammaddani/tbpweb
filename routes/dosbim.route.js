@@ -1,18 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const controller = require('../controller/auth.controller');
 const verifyToken= require ('../middleware/validtoken.middleware');
+const role= require ('../middleware/checkrole.middleware');
 
 
+// router.use(role('admin'));
 
-router.get('/', function(req, res) {
-    res.redirect('/login');
-  });
-  
-router.get('/login', controller.form);
-router.post('/login', controller.checklogin);
-
-router.get('/ubah-pw',verifyToken, function(req, res, next) {
+router.get('/dosbim/dashboard', verifyToken, function(req, res, next) {
+  // Menampilkan data user
   const userId = req.userId;
   const userEmail = req.userEmail;
   const userName = req.userName;
@@ -21,9 +16,10 @@ router.get('/ubah-pw',verifyToken, function(req, res, next) {
   const userFakultas = req.userFakultas;
   const userDepartemen = req.userDepartemen;
   const userRole = req.userRole;
+
   // Sekarang Anda dapat menggunakan data ini sesuai kebutuhan
-  res.render('ubah-pw', { userId,userEmail,userName,userNim,userNip,userFakultas,userDepartemen,userRole  });
+  res.render('dosbim/dashboard', { userId,userEmail,userName,userNim,userNip,userFakultas,userDepartemen,userRole });
 });
 
-router.post('/logout', verifyToken,controller.logout);
+//
 module.exports = router;

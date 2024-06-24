@@ -4,11 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
+var http = require('http');
+var socketIo = require('socket.io');
 
 // Import semua router yang diperlukan
 var mhsRouter = require('./routes/mahasiswa.route');
 var adminRouter = require('./routes/admin.route');
 var authRouter = require('./routes/auth.route');
+var dosbimRouter = require('./routes/dosbim.route');
 
 var app = express();
 
@@ -25,11 +28,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setup rute-rute aplikasi
 app.use('', mhsRouter); // Rute mahasiswa
 app.use('/admin', adminRouter); // Rute admin
+app.use('/dosbim', dosbimRouter); // Rute dosbim
 app.use('', authRouter); // Rute auth
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/preline', express.static(path.join(__dirname, 'node_modules/preline/dist')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));  
+app.use('/src/css', express.static(path.join(__dirname, 'src/css')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
